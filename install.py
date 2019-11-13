@@ -29,7 +29,19 @@ logging.getLogger('').addHandler(console)
 
 today = datetime.datetime.today()
 date_string = str(today.year) + str(today.month).zfill(2) + str(today.day).zfill(2)
-python_script_install_location = '/usr/lib/python3/dist-packages'
+# Do little magic for using user installed apps
+os.environ['PATH'] = os.pathsep.join(
+    ['{}/.local/bin'.format(os.environ['HOME'])] +
+    os.environ['PATH'].split(os.pathsep)
+)
+python_script_install_location = next(
+    filter(lambda x: x.startswith('/usr/local/lib'), sys.path[::-1]),
+    sys.path[-1]
+)
+if not os.path.exists(python_script_install_location):
+    logging.info('script directory `{}` is not exist, creating it...'.format(
+        python_script_install_location))
+    run(['mkdir', python_script_install_location], check=True)
 base_dependencies = ['git', 'checkinstall', 'autoconf', 'pkg-config', 'meson', 'ninja-build', 'libtool']
 
 
@@ -121,7 +133,7 @@ def apt_install(pkg_name):
 
 @check_success
 def pip_install(pkg_name):
-    return run_cmd(['pip3', 'install', pkg_name])
+    return run_cmd(['pip3', 'install', '--user', pkg_name])
 
 
 @check_success
