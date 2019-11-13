@@ -20,7 +20,7 @@
       "Cython"
     ],
     "post_install_script": [
-      "echo 'export LD_LIBRARY_PATH=/usr/local/lib' >> ~/.bashrc "
+      "echo 'export LD_LIBRARY_PATH=/usr/local/lib' >> ~/.bashrc"
     ]
   },
   {
@@ -54,6 +54,10 @@
       "qtbase5-dev",
       "qt5-default",
       "libqt5websockets5-dev"
+    ],
+    "post_install_script": [
+      "chmod +x ../build/release-64bit-gcc/vsedit",
+      "sudo ln -s ../build/release-64bit-gcc/vsedit /usr/local/bin/vsedit"
     ]
   },
   {
