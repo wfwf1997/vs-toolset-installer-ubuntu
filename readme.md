@@ -1,7 +1,7 @@
 # Vapoursynth Toolset Installer for Ubuntu
 Vapoursynth Toolset Installer is a python script that automates downloading, compiling and installing all dependencies and many plugins for vapoursynth and vapoursynth edit. Currently it does not include encoders like `x264` and tools like `mkvtoolnix`.
 ## Usage
-Download this repo as zip, and run `python3 install.py`.
+First run `sudo apt install -y python3-pip`, then download this repo as zip, and run `python3 install.py`.
 
 ```
 python3 install.py [-d folder] [--plugins-only] [package1 package2 ...]
