@@ -1,0 +1,990 @@
+[
+  {
+    "name": "meson",
+    "install": "pip3-sudo"
+  },
+  {
+    "name": "Cython",
+    "install": "pip3"
+  },
+  {
+    "name": "vapoursynth",
+    "install": "source",
+    "url": "https://github.com/vapoursynth/vapoursynth.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "zimg",
+      "cython3",
+      "Cython"
+    ],
+    "post_install_script": [
+      "echo 'export LD_LIBRARY_PATH=/usr/local/lib' >> ~/.bashrc "
+    ]
+  },
+  {
+    "name": "vapoursynth-pip",
+    "identifier": "vapoursynth",
+    "install": "pip3",
+    "dependencies": [
+      "vapoursynth"
+    ]
+  },
+  {
+    "name": "zimg",
+    "install": "source",
+    "url": "https://github.com/sekrit-twc/zimg.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true
+  },
+  {
+    "name": "vsedit",
+    "install": "source",
+    "url": "https://bitbucket.org/mystery_keeper/vapoursynth-editor.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "submodule": "pro",
+    "configure": false,
+    "pre_install_script": [
+      "qmake -norecursive pro.pro CONFIG+=release"
+    ],
+    "dependencies": [
+      "qtbase5-dev",
+      "qt5-default",
+      "libqt5websockets5-dev"
+    ]
+  },
+  {
+    "name": "fftw3f",
+    "install": "source",
+    "url": "http://www.fftw.org/fftw-3.3.8.tar.gz",
+    "url_type": "targz",
+    "compile_mode": "default",
+    "configure_options": [
+      "--enable-float",
+      "--enable-shared"
+    ]
+  },
+  {
+    "name": "fftw3f_threads",
+    "install": "source",
+    "url": "http://www.fftw.org/fftw-3.3.8.tar.gz",
+    "url_type": "targz",
+    "compile_mode": "default",
+    "configure_options": [
+      "--enable-float",
+      "--enable-shared",
+      "--enable-threads"
+    ]
+  },
+  {
+    "name": "l-smash",
+    "install": "source",
+    "url": "https://github.com/l-smash/l-smash.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "configure_options": [
+      "--enable-shared"
+    ]
+  },
+  {
+    "name": "vs-lsmas",
+    "install": "source",
+    "url": "https://github.com/VFR-maniac/L-SMASH-Works.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "submodule": "VapourSynth",
+    "dependencies": [
+      "libffms2-dev",
+      "l-smash"
+    ]
+  },
+  {
+    "name": "vs-mvsfunc",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/HomeOfVapourSynthEvolution/mvsfunc/master/mvsfunc.py",
+    "dependencies": [
+      "vs-fmtc",
+      "vs-bm3d"
+    ]
+  },
+  {
+    "name": "vs-havsfunc",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/HomeOfVapourSynthEvolution/havsfunc/master/havsfunc.py",
+    "dependencies": [
+      "vs-adjust",
+      "vs-mvsfunc",
+      "vs-nnedi3_resample"
+    ]
+  },
+  {
+    "name": "vs-nnedi3_resample",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/mawen1250/VapourSynth-script/master/nnedi3_resample.py",
+    "dependencies": [
+      "vs-mvsfunc"
+    ]
+  },
+  {
+    "name": "vs-adjust",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/dubhater/vapoursynth-adjust/master/adjust.py"
+  },
+  {
+    "name": "vs-mpls",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-ReadMpls.git",
+    "url_type": "git",
+    "dependencies": [
+      "libbluray-dev"
+    ],
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-ffms2",
+    "install": "source",
+    "url": "https://github.com/FFMS/ffms2.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "libffms2-dev"
+    ],
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libffms2.so /usr/local/lib/vapoursynth/libffms2.so"
+    ]
+  },
+  {
+    "name": "vs-nnedi3cl",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-NNEDI3CL.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "libboost-all-dev",
+      "ocl-icd-opencl-dev"
+    ]
+  },
+  {
+    "name": "vs-eedi3m",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-EEDI3.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "libboost-all-dev"
+    ]
+  },
+  {
+    "name": "vs-curve",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Curve.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-dfttest",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-DFTTest.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "fftw3f"
+    ]
+  },
+  {
+    "name": "vs-yadifmod",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Yadifmod.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-ttmpsm",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-TTempSmooth.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-tdm",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-TDeintMod.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-tcanny",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-TCanny.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "libboost-all-dev"
+    ]
+  },
+  {
+    "name": "vs-eedi2",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-EEDI2.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-pp7",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-DeblockPP7.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-deblock",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Deblock.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-dctf",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-DCTFilter.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "fftw3f"
+    ]
+  },
+  {
+    "name": "vs-ctmf",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-CTMF.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-grain",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-AddGrain.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-bm3d",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-BM3D.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "fftw3f"
+    ]
+  },
+  {
+    "name": "vs-retinex",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Retinex.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-it",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-IT.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-sangnom",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-SangNomMod.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-retinex",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Retinex.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-mv",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-mvtools.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "fftw3f",
+      "nasm"
+    ],
+    "post_install_script": [
+      "sudo cp build/libmvtools.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-nnedi3",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-nnedi3.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "yasm"
+    ]
+  },
+  {
+    "name": "vs-vsTAAmbk",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/HomeOfVapourSynthEvolution/vsTAAmbk/master/vsTAAmbk.py",
+    "dependencies": [
+      "vs-eedi2",
+      "vs-nnedi3",
+      "vs-fmtc",
+      "vs-mv",
+      "vs-sangnom",
+      "vs-tcanny",
+      "vs-eedi3m",
+      "vs-nnedi3cl",
+      "vs-mvsfunc",
+      "vs-havsfunc"
+    ]
+  },
+  {
+    "name": "vs-vd",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-VagueDenoiser.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-w3fdif",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-W3FDIF.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-delogo",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-DeLogo.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-bilateral",
+    "install": "source",
+    "url": "https://github.com/HomeOfVapourSynthEvolution/VapourSynth-Bilateral.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-muvsfunc",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/WolframRhodium/muvsfunc/master/muvsfunc.py",
+    "dependencies": [
+      "vs-mvsfunc",
+      "vs-havsfunc"
+    ]
+  },
+  {
+    "name": "vs-G41fun",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/Helenerineium/G41Fun/master/G41Fun.py",
+    "dependencies": [
+      "vs-mvsfunc",
+      "vs-havsfunc",
+      "vs-muvsfunc",
+      "vs-nnedi3_resample",
+      "vs-mvmulti"
+    ]
+  },
+  {
+    "name": "vs-mvmulti",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/IFeelBloated/vapoursynth-mvtools-sf/master/src/mvmulti.py"
+  },
+  {
+    "name": "vs-lvsfunc",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/Irrational-Encoding-Wizardry/lvsfunc/master/lvsfunc.py",
+    "dependencies": [
+      "vs-mvsfunc",
+      "vs-fvsfunc",
+      "vs-havsfunc",
+      "vs-kagefunc",
+      "vs-vsutil",
+      "vs-vsTAAmbk",
+      "vs-nnedi3_rpow2"
+    ]
+  },
+  {
+    "name": "vs-nnedi3_rpow2",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/darealshinji/vapoursynth-plugins/master/scripts/nnedi3_rpow2.py"
+  },
+  {
+    "name": "vs-vsutil",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/Irrational-Encoding-Wizardry/vsutil/master/vsutil.py"
+  },
+  {
+    "name": "vs-kagefunc",
+    "install": "python-script",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/kagefunc/raw/master/kagefunc.py",
+    "dependencies": [
+      "vs-mvsfunc",
+      "vs-fvsfunc",
+      "vs-vsutil"
+    ]
+  },
+  {
+    "name": "vs-remap",
+    "install": "source",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/Vapoursynth-RemapFrames.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-fvsfunc",
+    "install": "python-script",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/fvsfunc/raw/master/fvsfunc.py",
+    "dependencies": [
+      "vs-mvsfunc",
+      "vs-havsfunc",
+      "vs-muvsfunc",
+      "vs-nnedi3_rpow2"
+    ]
+  },
+  {
+    "name": "vs-vfrtocfr",
+    "install": "source",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/Vapoursynth-VFRToCFR.git",
+    "url_type": "git",
+    "compile_mode": "meson"
+  },
+  {
+    "name": "vs-hysteria",
+    "install": "python-script",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/vapoursynth-Hysteria/raw/master/hysteria.py"
+  },
+  {
+    "name": "vs-descale-py",
+    "install": "python-script",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/vapoursynth-descale/raw/master/descale.py",
+    "dependencies": [
+      "vs-descale"
+    ]
+  },
+  {
+    "name": "vs-descale",
+    "install": "source",
+    "url": "https://github.com/Irrational-Encoding-Wizardry/vapoursynth-descale.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "g++ -std=c++11 -shared -fPIC -O2 descale.cpp -o libdescale.so",
+      "sudo cp libdescale.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-acrop",
+    "install": "source",
+    "url": "https://github.com/himesaka-noa/vapoursynth-autocrop.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "g++ -std=c++11 -shared -fPIC -O2 autocrop.cpp -o libautocrop.so",
+      "sudo cp libautocrop.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-fmtc",
+    "install": "source",
+    "url": "https://github.com/EleonoreMizo/fmtconv.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "submodule": "build/unix",
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libfmtconv.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-f3kdb",
+    "install": "source",
+    "url": "https://github.com/SAPikachu/flash3kyuu_deband.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "./waf configure",
+      "./waf build",
+      "sudo checkinstall -y --pkgname vs-f3kdb --provides vs-f3kdb ./waf install",
+      "sudo cp build/libf3kdb.so /usr/local/lib/vapoursynth/"
+    ],
+    "dependencies": [
+      "python-minimal"
+    ]
+  },
+  {
+    "name": "vs-edgefixer",
+    "install": "source",
+    "url": "https://github.com/himesaka-noa/VS-ContinuityFixer.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "g++ continuity.cpp -shared -fPIC -O2 -msse2 -mfpmath=sse -o continuity.so",
+      "sudo cp continuity.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-d2v",
+    "install": "source",
+    "url": "https://github.com/dwbuiten/d2vsource.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "libffms2-dev"
+    ],
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libd2vsource.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-dotkill",
+    "install": "source",
+    "url": "https://github.com/himesaka-noa/DotKill.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "g++ -shared -fPIC dotkill1.cpp -O2 -o dotkill.so",
+      "sudo cp dotkill.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-fft3dfilter",
+    "install": "source",
+    "url": "https://github.com/himesaka-noa/VapourSynth-FFT3DFilter.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "dependencies": [
+      "fftw3f",
+      "fftw3f_threads"
+    ]
+  },
+  {
+    "name": "vs-grad",
+    "install": "source",
+    "url": "https://github.com/xekon/GradCurve.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  },
+  {
+    "name": "vs-knlm",
+    "install": "source",
+    "url": "https://github.com/Khanattila/KNLMeansCL.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "dependencies": [
+      "cmake",
+      "ocl-icd-opencl-dev",
+      "libboost-all-dev"
+    ],
+    "post_install_script": [
+      "sudo cp build/libknlmeanscl.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-wrap",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-awarpsharp2.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libawarpsharp2.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-bifrost",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-bifrost.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libbifrost.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-cnr2",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-cnr2.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libcnr2.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-decross",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-decross.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libdecross.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-dgm",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-degrainmedian.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libdegrainmedian.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-fh",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-fieldhint.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libfieldhint.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-focus",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-temporalsoften.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libtemporalsoften.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-scrawl",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-scrawl.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libscrawl.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-msmooth",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-msmoosh.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libmsmooth.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-damb",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-damb.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "libsndfile-dev"
+    ],
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libdamb.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-ssiq",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-ssiq.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libssiq.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-vscope",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-videoscope.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libvideoscope.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-fb",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-fillborders.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libfillborders.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-flux",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-fluxsmooth.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libfluxsmooth.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-tcomb",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-tcomb.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libtcomb.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-hist",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-histogram.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libhistogram.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-motionmask",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-motionmask.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libmotionmask.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-hqdn3d",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-hqdn3d.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libhqdn3d.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-smoothuv",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-smoothuv.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libsmoothuv.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-minideen",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-minideen.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libminideen.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-scxvid",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-scxvid.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "dependencies": [
+      "libxvidcore-dev"
+    ],
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libscxvid.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-minideen",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-minideen.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libminideen.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-tmedian",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-temporalmedian.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libtemporalmedian.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-dedot",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-dedot.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libdedot.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-ASTDR",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/dubhater/vapoursynth-astdr/master/ASTDR.py"
+  },
+  {
+    "name": "vs-dfmderainbow",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/dubhater/vapoursynth-dfmderainbow/master/dfmderainbow.py"
+  },
+  {
+    "name": "vs-tedgemask",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-tedgemask.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libtedgemask.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-focus2",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-temporalsoften2.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libtemporalsoften2.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-median",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-median.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libmedian.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-matchhist",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-matchhistogram.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libmatchhistogram.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-xaa",
+    "install": "python-script",
+    "url": "https://raw.githubusercontent.com/dubhater/vapoursynth-xaa/master/xaa.py"
+  },
+  {
+    "name": "vs-tbilateral",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-tbilateral.git",
+    "url_type": "git",
+    "compile_mode": "meson",
+    "post_install_script": [
+      "sudo cp build/libtbilateral.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-wwxd",
+    "install": "source",
+    "url": "https://github.com/dubhater/vapoursynth-wwxd.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "gcc -o libwwxd.so -fPIC -shared -O2 -Wall -Wextra -Wno-unused-parameter $(pkg-config --cflags vapoursynth) src/wwxd.c src/detection.c",
+      "sudo cp libwwxd.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-minsrp",
+    "install": "source",
+    "url": "https://github.com/IFeelBloated/minsrp.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "submodule": "build/unix",
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libminsrp.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-tla",
+    "install": "source",
+    "url": "https://bitbucket.org/mystery_keeper/templinearapproximate-vapoursynth.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "gcc -o libtla.so -fPIC -shared -O2 -Wall -Wextra -Wno-unused-parameter $(pkg-config --cflags vapoursynth) src/main.c src/processplane.c",
+      "sudo cp libtla.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-tonemap",
+    "install": "source",
+    "url": "https://github.com/ifb/vapoursynth-tonemap.git",
+    "url_type": "git",
+    "compile_mode": "default",
+    "autogen": true,
+    "post_install_script": [
+      "sudo ln -s /usr/local/lib/libtonemap.* /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-raws",
+    "install": "source",
+    "url": "https://github.com/chikuzen/vsrawsource.git",
+    "url_type": "git",
+    "compile_mode": "custom",
+    "install_script": [
+      "./configure",
+      "make",
+      "sudo cp libvsrawsource.so /usr/local/lib/vapoursynth/"
+    ]
+  },
+  {
+    "name": "vs-reduceflicker",
+    "install": "source",
+    "url": "https://github.com/VFR-maniac/VapourSynth-ReduceFlicker.git",
+    "url_type": "git",
+    "compile_mode": "default"
+  }
+]
