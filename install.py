@@ -284,12 +284,16 @@ def check_and_install(pkg_name, all_pkg_info):
         logging.info('Python package {} is successfully installed.'.format(pkg_name))
         return True
     elif pkg_info['install'] == 'python-script':
-        # no checking for installed
-        # check by import is not valid because of dependencies
+        script_filename = pkg_info['url'].split('/')[-1]
+        # check if the script is installed
+        if os.path.exists(os.path.join(python_script_install_location, script_filename)):
+            logging.info('Python script {} is already installed.'.format(pkg_name))
+            return True
+
         # handle dependencies
         for pkg in pkg_info.get('dependencies', []):
             check_and_install(pkg, all_pkg_info)
-        script_filename = pkg_info['url'].split('/')[-1]
+
         if not download_file(pkg_info['url']):
             logging.error('File {} downloading error.'.format(script_filename))
             return False
