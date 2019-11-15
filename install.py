@@ -14,7 +14,7 @@ if sys.version_info[0] == 2:
     exit(1)
 
 if not util.find_spec('pip'):
-    print('Please run: sudo apt install python3-dev python3-pip')
+    print('Please run: sudo apt install python3-pip')
     exit(1)
 else:
     try:
@@ -30,8 +30,7 @@ logging.getLogger('').addHandler(console)
 today = datetime.datetime.today()
 date_string = str(today.year) + str(today.month).zfill(2) + str(today.day).zfill(2)
 python_script_install_location = '/usr/lib/python3/dist-packages'
-base_dependencies = ['git', 'checkinstall', 'autoconf', 'pkg-config', 'python3-dev',
-                     'python3-pip', 'meson', 'ninja-build', 'libtool']
+base_dependencies = ['git', 'checkinstall', 'autoconf', 'pkg-config', 'meson', 'ninja-build', 'libtool']
 
 
 def check_success(func):
