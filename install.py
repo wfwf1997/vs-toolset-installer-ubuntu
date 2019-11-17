@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import sys
+import site
 from contextlib import ExitStack
 from functools import partial
 from importlib import util
@@ -32,13 +33,14 @@ today = datetime.datetime.today()
 date_string = str(today.year) + str(today.month).zfill(2) + str(today.day).zfill(2)
 # Do little magic for using user installed apps
 os.environ['PATH'] = os.pathsep.join(
-    ['{}/.local/bin'.format(os.environ['HOME'])] +
+    [os.path.join(site.getuserbase(), 'bin')] +
     os.environ['PATH'].split(os.pathsep)
 )
 python_script_install_location = next(
     filter(lambda x: x.startswith('/usr/local/lib'), sys.path[::-1]),
     sys.path[-1]
 )
+python_path = sys.executable
 if not os.path.exists(python_script_install_location):
     logging.info('script directory `{}` is not exist, creating it...'.format(
         python_script_install_location))
@@ -134,12 +136,12 @@ def apt_install(pkg_name):
 
 @check_success
 def pip_install(pkg_name):
-    return run_cmd(['pip3', 'install', '--user', pkg_name])
+    return run_cmd([python_path, '-m', 'pip', 'install', '--user', pkg_name])
 
 
 @check_success
 def sudo_pip_install(pkg_name):
-    return run_cmd(['sudo', 'pip3', 'install', pkg_name])
+    return run_cmd(['sudo', python_path, '-m', 'pip', 'install', pkg_name])
 
 
 @check_success
@@ -164,7 +166,7 @@ def make():
 
 @check_success
 def meson():
-    return run_cmd(['meson', 'build'])
+    return run_cmd([python_path, '-m', 'meson', 'build'])
 
 
 @check_success
